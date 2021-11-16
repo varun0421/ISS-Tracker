@@ -16,17 +16,11 @@ let marker = L.marker([0, 0], { icon: myIcon }).addTo(map)
 const fetchSpaceStationDetails = async () => {
     const res = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
     const data = await res.json()
-    const latitude = data.latitude;
-    const longitude = data.longitude;
-    const velocity = data.velocity;
+    const { latitude, longitude } = data
+    console.log(latitude, longitude)
 
-    // marker.setLatLng([latitude, longitude])
-    // L.marker([latitude, longitude], { icon: pathIcon }).addTo(map)
-    marker.setLatLng([latitude, longitude]);
-    document.getElementById("lon").innerHTML = longitude;
-    document.getElementById("lat").innerHTML = latitude;
-    document.getElementById("vel").innerHTML = velocity+ " Km/Hr";
-    console.log(data);
+    marker.setLatLng([latitude, longitude])
+    L.marker([latitude, longitude], { icon: pathIcon }).addTo(map)
 
 
 }
